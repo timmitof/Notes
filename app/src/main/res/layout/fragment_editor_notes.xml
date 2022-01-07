@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#222222"
+    tools:context=".fragments.EditorNotesFragment">
+
+    <EditText
+        android:id="@+id/name_editor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#6C6C6C"
+        android:textSize="25dp"
+        android:textStyle="bold|italic" />
+
+    <EditText
+        android:id="@+id/short_description_editor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Short Description"
+        android:textColor="#B3B3B3"
+        android:textColorHint="#494949"
+        android:textSize="25dp" />
+
+    <EditText
+        android:id="@+id/detailed_description_editor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Detailed Description"
+        android:textColor="#B3B3B3"
+        android:textColorHint="#494949"
+        android:textSize="25dp" />
+
+    <EditText
+        android:id="@+id/user_notes_editor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="User Notes"
+        android:textColor="#B3B3B3"
+        android:textColorHint="#494949"
+        android:textSize="25dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/start_event_editor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:hint="Start event date"
+            android:inputType="date"
+            android:ems="5"
+            android:textColor="#3DCC00"
+            android:textColorHint="#8ABD74"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/end_event_editor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:ems="5"
+            android:hint="End event date"
+            android:inputType="date"
+            android:textColor="#E80000"
+            android:textColorHint="#E27676" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/save_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#4B4E6D"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:text="Save" />
+
+        <Button
+            android:id="@+id/back_on_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#4B4E6D"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:text="Back" />
+
+    </LinearLayout>
+
+</LinearLayout>

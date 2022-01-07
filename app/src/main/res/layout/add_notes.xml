@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_alert_add_notes"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/name_editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#6C6C6C"
+            android:textSize="25dp"
+            android:textStyle="bold|italic" />
+
+        <EditText
+            android:id="@+id/short_description_editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Short Description"
+            android:textColor="#B3B3B3"
+            android:textColorHint="#494949"
+            android:textSize="25dp" />
+
+        <EditText
+            android:id="@+id/detailed_description_editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Detailed Description"
+            android:textColor="#B3B3B3"
+            android:textColorHint="#494949"
+            android:textSize="25dp" />
+
+        <EditText
+            android:id="@+id/user_notes_editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="User Notes"
+            android:textColor="#B3B3B3"
+            android:textColorHint="#494949"
+            android:textSize="25dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/start_event_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="5"
+                android:gravity="center"
+                android:hint="Start event date"
+                android:inputType="date"
+                android:textColor="#3DCC00"
+                android:textColorHint="#8ABD74"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/end_event_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="5"
+                android:gravity="center"
+                android:hint="End event date"
+                android:inputType="date"
+                android:textColor="#E80000"
+                android:textColorHint="#E27676" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:backgroundTint="#4B4E6D"
+                android:text="Add" />
+
+            <Button
+                android:id="@+id/back_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:backgroundTint="#4B4E6D"
+                android:text="Back" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
