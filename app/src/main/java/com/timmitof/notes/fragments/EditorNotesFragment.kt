@@ -1,5 +1,6 @@
 package com.timmitof.notes.fragments
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.timmitof.notes.Constants
@@ -17,8 +19,11 @@ import com.timmitof.notes.Constants.Companion.notes
 import com.timmitof.notes.MainActivity
 import com.timmitof.notes.R
 import com.timmitof.notes.models.Notes
+import java.text.SimpleDateFormat
+import java.util.*
 
 class EditorNotesFragment : Fragment() {
+    var formatDate = SimpleDateFormat("dd MMMM YYYY")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,8 +34,8 @@ class EditorNotesFragment : Fragment() {
         val nameEd: EditText = view.findViewById(R.id.name_editor)
         val shortDescription: EditText = view.findViewById(R.id.short_description_editor)
         val detailedDescription: EditText = view.findViewById(R.id.detailed_description_editor)
-        val startDateEvent: EditText = view.findViewById(R.id.start_event_editor)
-        val endDateEvent: EditText = view.findViewById(R.id.end_event_editor)
+        val startDateEvent: TextView = view.findViewById(R.id.start_event_editor)
+        val endDateEvent: TextView = view.findViewById(R.id.end_event_editor)
         val userNotes: EditText = view.findViewById(R.id.user_notes_editor)
 
         val saveBtn: Button = view.findViewById(R.id.save_btn)
@@ -41,9 +46,49 @@ class EditorNotesFragment : Fragment() {
         nameEd.setText(note.name)
         shortDescription.setText(note.shortDescription)
         detailedDescription.setText(note.detailedDescription)
-        startDateEvent.setText(note.startDateEvent)
-        endDateEvent.setText(note.endDateEvent)
+        startDateEvent.text = note.startDateEvent
+        endDateEvent.text = note.endDateEvent
         userNotes.setText(note.userNotes)
+
+        startDateEvent.setOnClickListener{
+            val getDate = Calendar.getInstance()
+            val datePicker = DatePickerDialog(requireContext(),
+                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                    val selectDate = Calendar.getInstance()
+                    selectDate.set(Calendar.YEAR, year)
+                    selectDate.set(Calendar.MONTH, monthOfYear)
+                    selectDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                    val date = formatDate.format(selectDate.time)
+                    startDateEvent.text = date.toString()
+                },
+                getDate.get(Calendar.YEAR),
+                getDate.get(Calendar.MONTH),
+                getDate.get(Calendar.DAY_OF_MONTH))
+
+            datePicker.show()
+        }
+
+        endDateEvent.setOnClickListener {
+            val getDate = Calendar.getInstance()
+            val datePicker = DatePickerDialog(requireContext(),
+                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                    val selectDate = Calendar.getInstance()
+                    selectDate.set(Calendar.YEAR, year)
+                    selectDate.set(Calendar.MONTH, monthOfYear)
+                    selectDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                    val date = formatDate.format(selectDate.time)
+                    endDateEvent.text = date.toString()
+                },
+                getDate.get(Calendar.YEAR),
+                getDate.get(Calendar.MONTH),
+                getDate.get(Calendar.DAY_OF_MONTH))
+
+            datePicker.show()
+        }
 
         saveBtn.setOnClickListener {
             for(item in notes){

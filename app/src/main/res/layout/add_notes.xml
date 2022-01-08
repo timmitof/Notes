@@ -52,32 +52,30 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/start_event_editText"
+            <TextView
+                android:id="@+id/tv_start_event"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:ems="5"
-                android:gravity="center"
                 android:hint="Start event date"
-                android:inputType="date"
                 android:textColor="#3DCC00"
                 android:textColorHint="#8ABD74"
                 android:textSize="20dp" />
 
-            <EditText
-                android:id="@+id/end_event_editText"
+            <TextView
+                android:id="@+id/tv_end_event"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:ems="5"
-                android:gravity="center"
                 android:hint="End event date"
-                android:inputType="date"
                 android:textColor="#E80000"
-                android:textColorHint="#E27676" />
+                android:textColorHint="#E27676"
+                android:textSize="20dp" />
 
         </LinearLayout>
 

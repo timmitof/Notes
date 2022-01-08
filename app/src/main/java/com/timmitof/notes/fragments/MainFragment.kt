@@ -1,6 +1,7 @@
 package com.timmitof.notes.fragments
 
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import androidx.lifecycle.ViewModel
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.timmitof.notes.Constants.Companion.counterId
@@ -17,10 +18,14 @@ import com.timmitof.notes.Constants.Companion.notes
 import com.timmitof.notes.R
 import com.timmitof.notes.adapters.MainAdapter
 import com.timmitof.notes.models.Notes
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainFragment : Fragment() {
     lateinit var addNotesBtn: FloatingActionButton
     lateinit var recyclerView: RecyclerView
+
+    var formatDate = SimpleDateFormat("dd MMMM YYYY")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,9 +57,49 @@ class MainFragment : Fragment() {
         val shortDescription = inflater.findViewById<EditText>(R.id.short_description_editText)
         val detailedDescription =
             inflater.findViewById<EditText>(R.id.detailed_description_editText)
-        val startDateEvent = inflater.findViewById<EditText>(R.id.start_event_editText)
-        val endDateEvent = inflater.findViewById<EditText>(R.id.end_event_editText)
+        val tvStartDateEvent = inflater.findViewById<TextView>(R.id.tv_start_event)
+        val tvEndDateEvent = inflater.findViewById<TextView>(R.id.tv_end_event)
         val userNotes = inflater.findViewById<EditText>(R.id.user_notes_editText)
+
+        tvStartDateEvent.setOnClickListener {
+            val getDate = Calendar.getInstance()
+            val datePicker = DatePickerDialog(requireContext(),
+                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                    val selectDate = Calendar.getInstance()
+                    selectDate.set(Calendar.YEAR, year)
+                    selectDate.set(Calendar.MONTH, monthOfYear)
+                    selectDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                    val date = formatDate.format(selectDate.time)
+                    tvStartDateEvent.text = date.toString()
+                },
+                getDate.get(Calendar.YEAR),
+                getDate.get(Calendar.MONTH),
+                getDate.get(Calendar.DAY_OF_MONTH))
+
+            datePicker.show()
+        }
+
+        tvEndDateEvent.setOnClickListener {
+            val getDate = Calendar.getInstance()
+            val datePicker = DatePickerDialog(requireContext(),
+                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                { view, year, monthOfYear, dayOfMonth ->
+                    val selectDate = Calendar.getInstance()
+                    selectDate.set(Calendar.YEAR, year)
+                    selectDate.set(Calendar.MONTH, monthOfYear)
+                    selectDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                    val date = formatDate.format(selectDate.time)
+                    tvEndDateEvent.text = date.toString()
+                },
+                getDate.get(Calendar.YEAR),
+                getDate.get(Calendar.MONTH),
+                getDate.get(Calendar.DAY_OF_MONTH))
+
+            datePicker.show()
+        }
 
         val dialog = alert.create()
 
@@ -69,8 +114,8 @@ class MainFragment : Fragment() {
                     name.text.toString(),
                     shortDescription.text.toString(),
                     detailedDescription.text.toString(),
-                    startDateEvent.text.toString(),
-                    endDateEvent.text.toString(),
+                    tvStartDateEvent.text.toString(),
+                    tvEndDateEvent.text.toString(),
                     userNotes.text.toString(),
                 )
             )
