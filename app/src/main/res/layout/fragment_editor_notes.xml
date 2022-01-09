@@ -58,6 +58,7 @@
             android:hint="Start event date"
             android:inputType="date"
             android:ems="5"
+            android:clickable="true"
             android:textColor="#3DCC00"
             android:textColorHint="#8ABD74"
             android:textSize="20dp" />
@@ -69,6 +70,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:ems="5"
+            android:clickable="true"
             android:hint="End event date"
             android:inputType="date"
             android:textColor="#E80000"
