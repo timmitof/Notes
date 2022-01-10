@@ -16,9 +16,10 @@
             android:id="@+id/name_editText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:hint="Name"
             android:textColor="#FFFFFF"
-            android:textColorHint="#6C6C6C"
+            android:textColorHint="#8E8E8E"
             android:textSize="25dp"
             android:textStyle="bold|italic" />
 
@@ -93,8 +94,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_weight="1"
-                android:backgroundTint="#4B4E6D"
-                android:text="Add" />
+                android:backgroundTint="#FFBF00"
+                android:text="Add"
+                android:textColor="#000000"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/back_btn"
@@ -102,8 +105,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_weight="1"
-                android:backgroundTint="#4B4E6D"
-                android:text="Back" />
+                android:backgroundTint="#FFBF00"
+                android:text="Back"
+                android:textColor="#000000"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </LinearLayout>
