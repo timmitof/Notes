@@ -4,21 +4,25 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.timmitof.notes.Constants
 import com.timmitof.notes.Constants.Companion.counterId
 import com.timmitof.notes.Constants.Companion.notes
 import com.timmitof.notes.R
 import com.timmitof.notes.adapters.MainAdapter
 import com.timmitof.notes.models.Notes
+import com.timmitof.notes.models.SwipeToDeleteCallback
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class MainFragment : Fragment() {
     lateinit var addNotesBtn: FloatingActionButton
@@ -36,6 +40,19 @@ class MainFragment : Fragment() {
 
         recyclerView = view.findViewById(R.id.recyclerView_main)
         recyclerView.adapter = MainAdapter(notes, requireActivity())
+
+        //удаление по свайпу
+        val swipeToDeleteCallback = object : SwipeToDeleteCallback(){
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                notes.removeAt(position)
+                recyclerView.adapter?.notifyItemRemoved(position)
+            }
+        }
+
+
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
 
         addNotesBtn.setOnClickListener {
             addNotesDialog()
@@ -62,7 +79,8 @@ class MainFragment : Fragment() {
 
         tvStartDateEvent.setOnClickListener {
             val getDate = Calendar.getInstance()
-            val datePicker = DatePickerDialog(requireContext(),
+            val datePicker = DatePickerDialog(
+                requireContext(),
                 android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                 DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                     val selectDate = Calendar.getInstance()
@@ -75,14 +93,16 @@ class MainFragment : Fragment() {
                 },
                 getDate.get(Calendar.YEAR),
                 getDate.get(Calendar.MONTH),
-                getDate.get(Calendar.DAY_OF_MONTH))
+                getDate.get(Calendar.DAY_OF_MONTH)
+            )
 
             datePicker.show()
         }
 
         tvEndDateEvent.setOnClickListener {
             val getDate = Calendar.getInstance()
-            val datePicker = DatePickerDialog(requireContext(),
+            val datePicker = DatePickerDialog(
+                requireContext(),
                 android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                 { view, year, monthOfYear, dayOfMonth ->
                     val selectDate = Calendar.getInstance()
@@ -95,7 +115,8 @@ class MainFragment : Fragment() {
                 },
                 getDate.get(Calendar.YEAR),
                 getDate.get(Calendar.MONTH),
-                getDate.get(Calendar.DAY_OF_MONTH))
+                getDate.get(Calendar.DAY_OF_MONTH)
+            )
 
             datePicker.show()
         }

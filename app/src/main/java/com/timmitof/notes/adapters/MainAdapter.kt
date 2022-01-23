@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.timmitof.notes.Constants
 import com.timmitof.notes.R
 import com.timmitof.notes.fragments.EditorNotesFragment
 import com.timmitof.notes.models.Notes
@@ -52,5 +53,10 @@ class MainAdapter(private var array: ArrayList<Notes>, private val context: Frag
 
     override fun getItemCount(): Int {
         return array.size
+    }
+
+    fun deleteItem(i: Int){
+        Constants.notes.removeAt(i)
+        notifyDataSetChanged()
     }
 }
